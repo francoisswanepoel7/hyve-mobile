@@ -3,7 +3,8 @@ namespace hyvemobile\api\model;
 
 class Contact extends Model
 {
-    function process() : void {
+    public static string $key = "";
+    function process() : string {
         foreach ($this->params as $param) {
             if (!$this->dbo->checkContactExists($param['email'])) {
                 $this->dbo->insertContact($param);
@@ -19,6 +20,7 @@ class Contact extends Model
                 $this->dbo->insertContactTimeZone($param, $tz_id);
             }
 
-        }
+	}
+	return json_encode(['results' => 'ok']);
     }
 }
