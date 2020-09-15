@@ -29,7 +29,7 @@ abstract class Model
             case 'POST':
                 if (empty($_POST)) {
                     $unfiltered_params = json_decode(file_get_contents('php://input'), true);
-                    if (array_key_exists(0, $unfiltered_params)) {
+                    if (is_array($unfiltered_params) && array_key_exists(0, $unfiltered_params)) {
                         foreach ($unfiltered_params as $unfiltered_section) {
                             $keys = array_keys($unfiltered_section);
                             $data = [];
