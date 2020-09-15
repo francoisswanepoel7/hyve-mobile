@@ -1,0 +1,17 @@
+{
+    "autoload": {
+        "psr-4": {
+            "hyvemobile\\": "src/"
+        }
+    },
+    "require": {
+        "monolog/monolog": "^2.1",
+        "league/csv": "^9.6",
+        "vlucas/phpdotenv": "^5.1",
+        "egulias/email-validator": "^2.1",
+        "nesbot/carbon": "^2.39",
+        "symfony/cache": "^5.1",
+        "symfony/http-client": "^5.1",
+        "nette/database": "^3.0"
+    }
+}
