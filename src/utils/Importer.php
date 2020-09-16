@@ -24,6 +24,7 @@ final class Importer
         foreach ($this->csv_reader as $record) {
             $record['datetime_local'] = Timezone::getLocalDateTime($record['date'], $record['time'], $record['tz']);
             $record['datetime_utc'] = Timezone::getUTCDateTime($record['datetime_local'], $record['tz']);
+
             unset($record['date']);
             unset($record['time']);
             $record['note'] = (mb_detect_encoding($record['note']) === 'ASCII') ? htmlspecialchars($record['note']) : utf8_encode($record['note']);
@@ -31,6 +32,6 @@ final class Importer
             $data[] = $record;
         }
         $result = Request::post($_ENV['IMPORTER_ENDPOINT'], $data);
-        print_r($result, true);
+        print_r($result);
     }
 }

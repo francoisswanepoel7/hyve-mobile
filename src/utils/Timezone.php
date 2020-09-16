@@ -8,11 +8,11 @@ use Carbon\Exceptions\InvalidDateException;
 class Timezone
 {
     public static string $format_local_input = 'd-M-Y H:m:s';
-    public static string $format_local_output = 'Y-m-d H:m:s';
+    public static string $format_local_output = 'Y-m-d H:i:s';
     public static function getLocalDateTime(string $date, string $time) {
         $datetime = $date.' '.$time;
         try {
-            return Carbon::createFromFormat(self::$format_local_input, $datetime)->toDateTimeString();
+            return Carbon::parse($datetime)->format(self::$format_local_output);
         } catch (InvalidDateException $exp) {
             echo $exp->getMessage();
         }
@@ -24,7 +24,7 @@ class Timezone
 
     public static function getUTCDateTime(string $datetime, string $tz) {
         try {
-            return Carbon::createFromFormat(self::$format_local_output, $datetime)->tz($tz)->tz('UTC')->toDateTimeString();
+            return Carbon::parse($datetime)->setTimezone($tz)->format(self::$format_local_output);
         } catch (\Carbon\Exceptions\InvalidDateException $exp) {
             echo $exp->getMessage();
         }
